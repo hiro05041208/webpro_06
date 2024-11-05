@@ -56,5 +56,33 @@ app.get("/janken", (req, res) => {
 
   res.render('janken', display);
 });
-app.listen(8080, () => console.log("Example app listening on port 8080!"));
+
 // じゃんけんで勝敗をつける
+
+app.get("/soccer", (req, res) => {
+  const num = Math.floor(Math.random() * 150 + 1);
+  let soccer = '';
+  let reaction = '';
+  
+  if (num == 1) {
+      soccer = 'ヨハン クライフ';
+      reaction = 'あなたは喜んでいる';
+  } else if (num == 2) {
+      soccer = 'フランチェスコ トッティ';
+      reaction = 'あなたは喜んでいる';
+  } else if (num == 3) {
+      soccer = 'フリスト ストイチコフ';
+      reaction = 'あなたは喜んでいる';
+  } else if (num >= 4 && num <= 11) {
+      soccer = 'エピック選手';
+      reaction = 'あなたは少し喜んだ';
+  } else if (num >= 12 && num <= 150) {
+      soccer = 'ノーマル選手';
+      reaction = 'あなたは残念がった';
+  }
+  
+  console.log('あなたが出したのは' + soccer + 'です。' + reaction);
+  res.render('soccer', { number: num, soccer: soccer, reaction: reaction });
+});  
+
+app.listen(8080, () => console.log("Example app listening on port 8080!"));
