@@ -22,7 +22,7 @@ app.get("/luck", (req, res) => {
   const num = Math.floor( Math.random() * 6 + 1 );
   let luck = '';
   if( num==1 ) luck = '大吉';
-  else if( num==2 ) luck = '中吉';
+  else if( num　<=2 ) luck = '中吉';
   console.log( 'あなたの運勢は' + luck + 'です' );
   res.render( 'luck', {number:num, luck:luck} );
 });
@@ -59,30 +59,51 @@ app.get("/janken", (req, res) => {
 
 // じゃんけんで勝敗をつける
 
-app.get("/soccer", (req, res) => {
-  const num = Math.floor(Math.random() * 150 + 1);
-  let soccer = '';
-  let reaction = '';
-  
-  if (num == 1) {
-      soccer = 'ヨハン クライフ';
-      reaction = 'あなたは喜んでいる';
-  } else if (num == 2) {
-      soccer = 'フランチェスコ トッティ';
-      reaction = 'あなたは喜んでいる';
-  } else if (num == 3) {
-      soccer = 'フリスト ストイチコフ';
-      reaction = 'あなたは喜んでいる';
-  } else if (num >= 4 && num <= 11) {
-      soccer = 'エピック選手';
-      reaction = 'あなたは少し喜んだ';
-  } else if (num >= 12 && num <= 150) {
-      soccer = 'ノーマル選手';
-      reaction = 'あなたは残念がった';
+
+
+app.set('view engine', 'ejs');
+app.use(express.urlencoded({ extended: true }));
+app.use("/public", express.static(__dirname + "/public"));
+
+// `/age` ルート（GET）
+app.get("/age", (req, res) => {
+  res.render("age");
+});
+
+// `/age` ルート（POST）
+app.post("/age", (req, res) => {
+  const age = req.body.age;
+  const ageMessage = age >= 18 ? "成人です" : "未成年です";
+  res.render("age", { age, ageMessage });
+});
+
+
+app.set('view engine', 'ejs');
+app.use(express.urlencoded({ extended: true }));
+app.use("/public", express.static(__dirname + "/public"));
+
+// `/weather` ルート（GET）
+app.get("/weather", (req, res) => {
+  res.render("weather");
+});
+
+// `/weather` ルート（POST）
+app.post("/weather", (req, res) => {
+  const weather = req.body.weather;
+  let advice = '';
+
+  if (weather === "晴れ") {
+    advice = "今日は外に出かけるのにぴったりです！";
+  } else if (weather === "雨") {
+    advice = "傘を持っていきましょう！";
+  } else if (weather === "雪") {
+    advice = "暖かい服を着て外出しましょう！";
+  } else { (weather === "不明")
+    advice = "天気の情報が不明です。";
   }
-  
-  console.log('あなたが出したのは' + soccer + 'です。' + reaction);
-  res.render('soccer', { number: num, soccer: soccer, reaction: reaction });
-});  
+
+  res.render("weather", { weather, advice });
+});
+
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

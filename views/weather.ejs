@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>天気予報</title>
+</head>
+<body>
+  <h1>天気予報</h1>
+  <form action="/weather" method="POST">
+    <label for="weather">今日の天気を選んでください:</label>
+    <select id="weather" name="weather">
+      <option value="晴れ">晴れ</option>
+      <option value="雨">雨</option>
+      <option value="雪">雪</option>
+      <option value="不明">不明</option>
+    </select>
+    <button type="submit">送信</button>
+  </form>
+
+  <% if (typeof weather !== 'undefined') { %>
+    <p>今日の天気: <%= weather %></p>
+    <p><%= advice %></p>
+  <% } %>
+</body>
+</html>
