@@ -13,7 +13,7 @@ public/janken.html| じゃんけんの勝ち負けを判定する
 public/age.html | 年齢で成人か未成年かを区別する
 public/weather.html | 天気によっての行動を判定する
 
-## show.ejs
+## show
 ##　起動方法
 1.```node app5.js```でプログラムを起動する
 2.Webブラウザで```localhost:8080/public/hello1```か```localhost:8080/public/hello2```にアクセスする
@@ -28,7 +28,7 @@ app.get("/hello1", (req, res) => {
   res.render('show', { greet1:message1, greet2:message2});
   });
 ```
-## luck.ejs
+## luck
 ##　起動方法
 1.```node app5.js```でプログラムを起動する
 2.Webブラウザで```localhost:8080/public/luck.html```にアクセスする
@@ -48,7 +48,7 @@ app.get("/luck", (req, res) => {
 });
 ```
 
-## icon.ejs
+## icon
 ##　起動方法
 1.```node app5.js```でプログラムを起動する
 2.Webブラウザで```localhost:8080/public/icon.html```にアクセスする
@@ -62,7 +62,7 @@ app.get("/icon", (req, res) => {
 });
 ```
 
-## janken.ejs
+## janken
 ##　起動方法
 1.```node app5.js```でプログラムを起動する
 2.Webブラウザで```localhost:8080/public/janken.html```にアクセスする
@@ -126,7 +126,7 @@ c --> end1
 d --> end1
 
 ```
-## age.ejs
+## age
 ##　起動方法
 1.```node app5.js```でプログラムを起動する
 2.Webブラウザで```localhost:8080/public/age.html```にアクセスする
@@ -176,7 +176,7 @@ if -->|20以上| loose
 loose --> end1
 ```
 
-## weather.ejs
+## weather
 ##　起動方法
 
 1.```node app5.js```でプログラムを起動する
